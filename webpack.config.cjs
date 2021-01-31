@@ -1,11 +1,11 @@
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry : './index.js',
+    entry : './src/app/main.js',
     output : {
-        path : path.resolve(__dirname , 'dist'),
-        filename: 'index_bundle.js'
+        path : path.resolve(__dirname , 'public'),
+        filename: 'main.bundle.js'
     },
     module : {
         rules : [
@@ -16,8 +16,7 @@ module.exports = {
     mode:'development',
     plugins : [
         new HtmlWebpackPlugin ({
-            template : 'index.html'
+            template : './src/app/main.html'
         })
     ]
-
-}
+};

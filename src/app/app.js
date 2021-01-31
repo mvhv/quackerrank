@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
     return (
-        <h4>Hello, world!</h4>
+        <div>
+            <h4>Hello, world!</h4>
+        </div>
     );
 };

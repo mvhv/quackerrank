@@ -1,4 +1,4 @@
-{
+export default {
     "node": {
         "server": "localhost",
         "port": 3000,
