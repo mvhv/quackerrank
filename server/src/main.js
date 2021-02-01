@@ -3,8 +3,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import path from 'path';
 
-import apiRoutes from './src/api/routes.js';
-import appRoutes from './src/app/routes.js';
+import apiRoutes from './api/routes.js';
 
 import config from './config/server.js';
 
@@ -23,9 +22,9 @@ server.use(cors());
 server.use(express.json());
 
 // routes
-server.use('/public', express.static('public'))
+server.use('/public', express.static(path.resolve('../app/dist/')));
 server.use('/api', apiRoutes);
-server.use('/app', appRoutes);
+server.get('/', (req, res) => res.sendFile(path.resolve('../app/dist/main.html')));
 
 // start serving
 server.listen(config.node.port, () => {

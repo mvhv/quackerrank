@@ -1,5 +1,5 @@
 import express from 'express';
 
-const apiRoutes = express.Router();
+const apiRouter = express.Router();
 
 export default apiRoutes;
