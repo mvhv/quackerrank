@@ -1,10 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import path from 'path';
 
-import apiRoutes from './api/routes.js';
-
+import routes from './api/routes.js';
 import config from './config/server.js';
 
 // connect to mongodb
@@ -15,18 +13,13 @@ mongoose.connection.once('open', () => {
 });
 
 // init express server
-const server = express()
+const app = express()
 
 // middleware
-server.use(cors());
-server.use(express.json());
+app.use(cors());
+app.use(express.json());
+app.use(routes);
 
-// routes
-server.use('/public', express.static(path.resolve('../app/dist/')));
-server.use('/api', apiRoutes);
-server.get('/', (req, res) => res.sendFile(path.resolve('../app/dist/main.html')));
-
-// start serving
-server.listen(config.node.port, () => {
-    console.log(`Server is running on port: ${config.node.port}`);
+app.listen(config.node.port, () => {
+    console.log(`Server is running on:\n\t${config.node.server}:${config.node.port}`);
 });

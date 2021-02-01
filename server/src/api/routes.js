@@ -1,5 +1,11 @@
 import express from 'express';
+import path from 'path';
 
-const apiRouter = express.Router();
+import apiRoutes from './api.js';
 
-export default apiRoutes;
+const routes = express.Router();
+routes.use('/public', express.static(path.resolve('../app/dist/')));
+routes.use('/api', apiRoutes);
+routes.get('/', (req, res) => res.sendFile(path.resolve('../app/dist/main.html')));
+
+export default routes;
